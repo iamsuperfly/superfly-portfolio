@@ -9,6 +9,14 @@ A minimal, premium personal portfolio built with Next.js (App Router, JavaScript
 - Contact
 - Optional music toggle (`/public/audio/ambient.mp3`)
 
+## Asset upload paths
+Use these directories for your uploads:
+- Brand logo / PFP: `public/images/branding/`
+- Social/contact icons (X, GitHub, Email, Music icon): `public/images/icons/`
+- Project screenshots: `public/images/projects/`
+- Slides / deck previews: `public/images/slides/`
+- Music/audio tracks: `public/audio/`
+
 ## Run locally
 
 ```bash
