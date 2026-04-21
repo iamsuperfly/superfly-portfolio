@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Your Name — Portfolio',
-  description: 'Minimal premium developer portfolio built with Next.js.',
+  title: 'Superfly — One build at a time.',
+  description: 'Superfly portfolio: technical builds, mobile-first development, and creator-led documentation.',
 };
 
 export default function RootLayout({ children }) {
