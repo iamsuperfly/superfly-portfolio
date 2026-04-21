@@ -26,7 +26,8 @@ export default function MusicToggle() {
   return (
     <div className="music-toggle-wrap">
       <button className="music-toggle" onClick={toggleAudio} aria-label="Toggle background music">
-        {isPlaying ? 'Music: On' : 'Music: Off'}
+        <img src="/images/icons/music-logo-icon-png-31.png" alt="Music icon" className="music-icon" />
+        <span>{isPlaying ? 'Music On' : 'Music Off'}</span>
       </button>
       <audio ref={audioRef} src="/audio/ambient.mp3" loop preload="none" />
     </div>
