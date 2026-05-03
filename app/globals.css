@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+
+
 :root {
   color-scheme: dark;
   --bg: #090b10;
@@ -76,11 +78,67 @@ a {
   color: var(--text);
 }
 
+.navbar-hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  color: var(--muted);
+  padding: 0.35rem;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.navbar-hamburger:hover {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.navbar-mobile {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+  padding: 0.5rem 0 0.75rem;
+  width: min(1080px, 92vw);
+  margin: 0 auto;
+}
+
+.navbar-mobile-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--line);
+  transition: color 160ms ease;
+}
+
+.navbar-mobile-link:last-child {
+  border-bottom: none;
+}
+
+.navbar-mobile-link:hover {
+  color: var(--text);
+}
+
+@media (max-width: 540px) {
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-hamburger {
+    display: inline-flex;
+  }
+}
+
 .site-shell {
   width: min(1080px, 92vw);
   margin: 0 auto;
   padding: 1.25rem 0 5rem;
 }
+
+
 .section {
   border-top: 1px solid var(--line);
   padding: 4rem 0;
