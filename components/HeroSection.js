@@ -23,7 +23,7 @@ export default function HeroSection() {
 
       <h1 className="hero-title">Bringing your ideas to life.</h1>
       <p className="hero-copy">
-        Independent builder creating useful digital products, websites, and tools while documenting the process.
+        Building things on the internet. You might find some of them useful.
       </p>
 
       <div className="hero-actions">

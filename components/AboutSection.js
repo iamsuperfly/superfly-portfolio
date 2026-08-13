@@ -3,19 +3,14 @@ import SectionWrapper from './SectionWrapper';
 export default function AboutSection() {
   return (
     <SectionWrapper id="about" title="About">
-      <p className="about-copy">
-        I’m a developer and creator operating at the edge of the digital frontier. My workflow is built on efficiency.
-        I build tools that solve real problems. If it’s technical and interesting, I’m building it.
-      </p>
+      <p className="about-copy">{`I’m Superfly. I build things, experiment with ideas, and share what I find interesting.
+
+Most of my work starts with a simple question: “Can this actually be built?”`}</p>
 
       <dl className="about-details">
         <div>
-          <dt>Specialization</dt>
-          <dd>Mobile-first development and technical content creation.</dd>
-        </div>
-        <div>
-          <dt>Audience</dt>
-          <dd>Builders, degens, and brands of any kind.</dd>
+          <dt>For</dt>
+          <dd>Builders, individuals, and brands.</dd>
         </div>
         <div>
           <dt>Availability</dt>
