@@ -1,34 +1,32 @@
-'use client';
-
+import Image from 'next/image';
 import SectionWrapper from './SectionWrapper';
 
 const projects = [
   {
-    title: 'Project One',
-    description: 'A short description of what this project does and the problem it solves. Keep it punchy.',
-    tags: ['React', 'TypeScript', 'Node.js'],
+    title: 'RepSolana',
+    label: 'On-Chain Reputation Passport',
+    description:
+      "Turns a Solana wallet's real on-chain activity into a dynamic reputation score and soulbound compressed NFT passport.",
+    tags: ['Vite', 'React', 'TypeScript', 'Solana Web3.js', 'Metaplex', 'Vercel'],
+    image: {
+      src: '/images/projects/eaf66f14-4035-4788-bdb1-06803cdcfe89.png',
+      alt: 'RepSolana dashboard preview showing an on-chain reputation passport interface',
+    },
     links: {
-      github: 'https://github.com/iamsuperfly',
-      live: '',
+      github: 'https://github.com/iamsuperfly/rep-solana',
+      live: 'https://rep-solana.vercel.app/',
     },
   },
+];
+
+const upcomingSlots = [
   {
-    title: 'Project Two',
-    description: 'A short description of what this project does and the problem it solves. Keep it punchy.',
-    tags: ['Mobile', 'Expo', 'API'],
-    links: {
-      github: 'https://github.com/iamsuperfly',
-      live: '',
-    },
+    title: 'Next Project',
+    description: 'Add the next real build here when project details, links, and visuals are ready.',
   },
   {
-    title: 'Project Three',
-    description: 'A short description of what this project does and the problem it solves. Keep it punchy.',
-    tags: ['Tool', 'Automation'],
-    links: {
-      github: 'https://github.com/iamsuperfly',
-      live: '',
-    },
+    title: 'Future Build',
+    description: 'Reserved for another polished project card without inventing placeholder project content.',
   },
 ];
 
@@ -50,11 +48,22 @@ export default function ProjectsSection() {
     <SectionWrapper id="projects" title="Projects">
       <div className="projects-grid">
         {projects.map((project) => (
-          <article key={project.title} className="project-card">
+          <article key={project.title} className="project-card project-card-featured">
+            <div className="project-preview" aria-label={`${project.title} visual preview`}>
+              <Image
+                src={project.image.src}
+                alt={project.image.alt}
+                fill
+                sizes="(min-width: 960px) 33vw, (min-width: 680px) 50vw, 92vw"
+                className="project-image"
+                priority
+              />
+            </div>
             <div className="project-card-body">
+              <p className="project-label">{project.label}</p>
               <h3 className="project-title">{project.title}</h3>
               <p className="project-description">{project.description}</p>
-              <div className="project-tags">
+              <div className="project-tags" aria-label={`${project.title} technology stack`}>
                 {project.tags.map((tag) => (
                   <span key={tag} className="project-tag">{tag}</span>
                 ))}
@@ -67,7 +76,7 @@ export default function ProjectsSection() {
                   href={project.links.github}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label={project.title + ' on GitHub'}
+                  aria-label={`${project.title} on GitHub`}
                 >
                   <GitHubIcon />
                   <span>GitHub</span>
@@ -79,12 +88,22 @@ export default function ProjectsSection() {
                   href={project.links.live}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label={project.title + ' live demo'}
+                  aria-label={`${project.title} live demo`}
                 >
                   <ArrowIcon />
-                  <span>Live</span>
+                  <span>Live Demo</span>
                 </a>
               )}
+            </div>
+          </article>
+        ))}
+
+        {upcomingSlots.map((slot) => (
+          <article key={slot.title} className="project-card project-card-upcoming" aria-label={`${slot.title} slot`}>
+            <div className="project-card-body">
+              <p className="project-label">Reserved slot</p>
+              <h3 className="project-title">{slot.title}</h3>
+              <p className="project-description">{slot.description}</p>
             </div>
           </article>
         ))}
