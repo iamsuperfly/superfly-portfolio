@@ -50,6 +50,7 @@ export default function Navbar() {
           onClick={() => setOpen((o) => !o)}
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
+          aria-controls="mobile-navigation"
         >
           {open ? <CloseIcon /> : <HamburgerIcon />}
         </button>
@@ -57,7 +58,7 @@ export default function Navbar() {
 
       {/* Mobile dropdown */}
       {open && (
-        <nav className="navbar-mobile" aria-label="Mobile site navigation">
+        <nav id="mobile-navigation" className="navbar-mobile" aria-label="Mobile site navigation">
           {navLinks.map((link) => (
             <a
               key={link.label}
