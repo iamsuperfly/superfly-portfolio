@@ -44,6 +44,12 @@ export default async function ProjectDetailsPage({ params }) {
               <p className="project-label">{project.label || technologies[0] || 'Project'}</p>
               <h1 className="page-title">{project.title}</h1>
               <p className="project-detail-description">{project.description}</p>
+              {project.extended_description ? (
+                <div className="project-detail-extended">
+                  <h2>About this project</h2>
+                  <p>{project.extended_description}</p>
+                </div>
+              ) : null}
               {technologies.length > 0 && (
                 <div className="project-tags" aria-label={`${project.title} technology stack`}>
                   {technologies.map((technology) => (

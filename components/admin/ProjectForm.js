@@ -27,6 +27,15 @@ export default function ProjectForm({ project, error }) {
           Description
           <textarea name="description" defaultValue={project?.description || ''} required />
         </label>
+        <label className="admin-form-full">
+          Extended Description
+          <textarea
+            name="extended_description"
+            defaultValue={project?.extended_description || ''}
+            placeholder="Add a longer project story, including the problem, approach, technical decisions, and outcome."
+          />
+          <span className="form-help">Optional. This appears on the project detail page, while the short description remains on cards.</span>
+        </label>
         <label>
           Technologies
           <input

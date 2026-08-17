@@ -10,6 +10,7 @@ create table if not exists public.projects (
   slug text not null unique,
   label text,
   description text not null,
+  extended_description text,
   technologies text[] not null default '{}',
   image_url text,
   image_path text,
@@ -21,6 +22,9 @@ create table if not exists public.projects (
   created_at timestamptz not null default timezone('utc', now()),
   updated_at timestamptz not null default timezone('utc', now())
 );
+
+alter table public.projects
+add column if not exists extended_description text;
 
 create or replace function public.set_updated_at()
 returns trigger
