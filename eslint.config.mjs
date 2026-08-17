@@ -7,7 +7,7 @@ const compat = new FlatCompat({
 const config = [
   ...compat.extends('next/core-web-vitals'),
   {
-    ignores: ['.next/**', 'node_modules/**', 'out/**'],
+    ignores: ['.next/**', 'node_modules/**', 'out/**', '.local/**'],
   },
 ];
 
