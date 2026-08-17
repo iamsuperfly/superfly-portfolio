@@ -421,6 +421,11 @@ a {
   min-width: 0;
 }
 
+.project-track-clone,
+.project-more-card {
+  display: none;
+}
+
 .project-card {
   border: 1px solid var(--line);
   border-radius: 1rem;
@@ -472,6 +477,51 @@ a {
 .project-card:hover {
   border-color: rgba(255, 255, 255, 0.18);
   background: rgba(255, 255, 255, 0.035);
+}
+
+.project-more-card {
+  position: relative;
+  min-height: 18rem;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.7rem;
+  border: 1px dashed var(--line);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.project-more-card:hover {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-1px);
+}
+
+.project-more-card:focus-visible {
+  outline: 2px solid rgba(220, 230, 255, 0.8);
+  outline-offset: 3px;
+}
+
+.project-more-title {
+  font-size: clamp(1.55rem, 7vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.project-more-copy {
+  max-width: 17rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.project-more-arrow {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  color: var(--accent);
+  font-size: 1.5rem;
 }
 
 .project-card-body {
@@ -899,7 +949,9 @@ a {
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
     scrollbar-width: none;
+    touch-action: pan-x;
     -webkit-overflow-scrolling: touch;
   }
 
@@ -907,7 +959,9 @@ a {
     display: none;
   }
 
-  .project-track .project-card {
+  .project-track .project-card,
+  .project-track .project-more-card {
+    display: flex;
     flex: 0 0 min(82vw, 22rem);
     scroll-snap-align: start;
   }
