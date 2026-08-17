@@ -1,11 +1,12 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 
 const navLinks = [
-  { label: 'Projects', href: '#projects' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'About', href: '/#about' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 const HamburgerIcon = () => (
@@ -31,9 +32,9 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="navbar-inner">
-        <a href="#hero" className="navbar-brand" onClick={handleLinkClick}>
+         <Link href="/#hero" className="navbar-brand" onClick={handleLinkClick}>
           Superfly
-        </a>
+         </Link>
 
         {/* Desktop links */}
         <nav className="navbar-links" aria-label="Site navigation">

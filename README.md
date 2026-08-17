@@ -10,25 +10,19 @@ A minimal, premium personal portfolio built with Next.js (App Router, JavaScript
 - **About** — bio copy and specialization details
 - **Contact** — email link and social channel icons
 
-## Customizing projects
+## Managing projects
 
-Edit the `projects` array at the top of `components/ProjectsSection.js`:
+Projects are stored in Supabase instead of being edited in the source code.
 
-```js
-const projects = [
-  {
-    title: 'Your Project Name',
-    description: 'What it does and why it matters.',
-    tags: ['React', 'TypeScript'],
-    links: {
-      github: 'https://github.com/iamsuperfly/your-repo',
-      live: 'https://your-live-url.com', // leave empty string to hide
-    },
-  },
-];
-```
+1. Add the variables from `.env.example` to your local environment or Vercel.
+2. Run `supabase/schema.sql` in the Supabase SQL editor.
+3. Run `supabase/seed.sql` to preserve the existing RepSolana project.
+4. Create an email/password user in Supabase Auth, then add that user's UUID to `public.admin_users` using the commented SQL in `supabase/seed.sql`.
+5. Visit `/admin` to create, edit, publish, highlight, reorder, and delete projects.
 
-Add or remove objects to add or remove cards. The grid adjusts automatically (1 column on mobile → 2 on tablet → 3 on desktop).
+The public site reads published projects with the Supabase anonymous/publishable key. Admin writes use the signed-in user's session and are protected by server-side authorization checks plus Row Level Security. No service-role key is required by this architecture.
+
+On smaller screens, project cards use a manually scrollable track with slow automatic motion. The motion pauses for interaction and respects `prefers-reduced-motion`.
 
 ## Asset upload paths
 
