@@ -421,8 +421,7 @@ a {
   min-width: 0;
 }
 
-.project-track-clone,
-.project-more-card {
+.project-track-clone {
   display: none;
 }
 
@@ -480,6 +479,7 @@ a {
 }
 
 .project-more-card {
+  display: flex;
   position: relative;
   min-height: 18rem;
   flex-direction: column;
@@ -646,6 +646,25 @@ a {
   color: var(--muted);
   font-size: 1.05rem;
   line-height: 1.75;
+}
+
+.project-detail-extended {
+  margin-top: 2rem;
+  max-width: 68ch;
+}
+
+.project-detail-extended h2 {
+  margin: 0 0 0.7rem;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.project-detail-extended p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.8;
+  white-space: pre-line;
 }
 
 .project-detail-copy .project-tags {
@@ -964,6 +983,41 @@ a {
     display: flex;
     flex: 0 0 min(82vw, 22rem);
     scroll-snap-align: start;
+  }
+
+  .projects-catalogue-grid {
+    grid-template-columns: repeat(auto-fit, minmax(7.25rem, 1fr));
+    gap: 0.7rem;
+  }
+
+  .projects-catalogue-grid .project-card {
+    gap: 0.75rem;
+    padding: 0.7rem;
+    border-radius: 0.75rem;
+  }
+
+  .projects-catalogue-grid .project-preview {
+    aspect-ratio: 1 / 0.82;
+    border-radius: 0.6rem;
+  }
+
+  .projects-catalogue-grid .project-card-body {
+    gap: 0.3rem;
+  }
+
+  .projects-catalogue-grid .project-label {
+    font-size: 0.62rem;
+  }
+
+  .projects-catalogue-grid .project-title {
+    font-size: 0.88rem;
+    line-height: 1.25;
+  }
+
+  .projects-catalogue-grid .project-description,
+  .projects-catalogue-grid .project-tags,
+  .projects-catalogue-grid .project-links {
+    display: none;
   }
 
   .project-detail-grid {

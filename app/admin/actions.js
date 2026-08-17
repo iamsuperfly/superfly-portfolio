@@ -53,6 +53,7 @@ export async function saveProject(formData) {
       title: value(formData, 'title'),
       slug,
       description: value(formData, 'description'),
+      extended_description: optionalValue(formData, 'extended_description'),
       technologies: parseTechnologies(formData.get('technologies')),
       image_url: uploadedImage?.url || optionalValue(formData, 'image_url'),
       image_path: uploadedImage?.path || existing?.image_path || null,

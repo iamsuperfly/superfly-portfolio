@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Navbar from '../../components/Navbar';
 import ProjectCard from '../../components/ProjectCard';
-import ProjectTrack from '../../components/ProjectTrack';
 import { getProjects } from '../../lib/projects';
 
 export const dynamic = 'force-dynamic';
@@ -23,9 +22,9 @@ export default async function ProjectsPage() {
             <Link className="button button-ghost" href="/#projects">Back to highlights</Link>
           </div>
           {projects.length > 0 ? (
-            <ProjectTrack>
+            <div className="projects-grid projects-catalogue-grid">
               {projects.map((project) => <ProjectCard key={project.id} project={project} />)}
-            </ProjectTrack>
+            </div>
           ) : (
             <div className="empty-state">
               <p className="project-label">No published projects yet</p>
