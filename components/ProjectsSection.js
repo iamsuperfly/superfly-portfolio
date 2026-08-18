@@ -16,15 +16,18 @@ export default async function ProjectsSection() {
         <Link className="view-more-link" href="/projects">View More</Link>
       </div>
       {projects.length > 0 ? (
-        <ProjectTrack>
-          {projects.map((project) => <ProjectCard key={project.id} project={project} />)}
-          <Link className="project-more-card" href="/projects">
-            <span className="project-label">Project Highlights</span>
-            <span className="project-more-title">View More</span>
-            <span className="project-more-copy">Explore the full collection of builds, experiments, and products.</span>
-            <span className="project-more-arrow" aria-hidden="true">↗</span>
-          </Link>
-        </ProjectTrack>
+        <>
+          <p className="project-track-hint" aria-hidden="true">Swipe to explore</p>
+          <ProjectTrack>
+            {projects.map((project) => <ProjectCard key={project.id} project={project} />)}
+            <Link className="project-more-card" href="/projects">
+              <span className="project-label">Project Highlights</span>
+              <span className="project-more-title">View More</span>
+              <span className="project-more-copy">Explore the full collection of builds, experiments, and products.</span>
+              <span className="project-more-arrow" aria-hidden="true">↗</span>
+            </Link>
+          </ProjectTrack>
+        </>
       ) : (
         <div className="empty-state">
           <p className="project-label">Project Highlights</p>

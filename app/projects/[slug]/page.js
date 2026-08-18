@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Navbar from '../../../components/Navbar';
+import ProjectGallery from '../../../components/ProjectGallery';
 import { getProjectBySlug, projectImageSource } from '../../../lib/projects';
 
 export const dynamic = 'force-dynamic';
@@ -50,6 +51,7 @@ export default async function ProjectDetailsPage({ params }) {
                   <p>{project.extended_description}</p>
                 </div>
               ) : null}
+              <ProjectGallery projectTitle={project.title} items={project.gallery} />
               {technologies.length > 0 && (
                 <div className="project-tags" aria-label={`${project.title} technology stack`}>
                   {technologies.map((technology) => (
