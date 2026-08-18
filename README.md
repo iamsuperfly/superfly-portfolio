@@ -15,10 +15,12 @@ A minimal, premium personal portfolio built with Next.js (App Router, JavaScript
 Projects are stored in Supabase instead of being edited in the source code.
 
 1. Add the variables from `.env.example` to your local environment or Vercel.
-2. Run `supabase/schema.sql` in the Supabase SQL editor.
+2. For a new Supabase project, run `supabase/schema.sql` in the Supabase SQL editor. For an existing project, run `supabase/migrations/202608180001_project_cms_gallery.sql` instead. The migration is idempotent and preserves existing project rows.
 3. Run `supabase/seed.sql` to preserve the existing RepSolana project.
 4. Create an email/password user in Supabase Auth, then add that user's UUID to `public.admin_users` using the commented SQL in `supabase/seed.sql`.
 5. Visit `/admin` to create, edit, publish, highlight, reorder, and delete projects.
+
+The CMS migration adds the nullable `projects.extended_description` field, creates the `project_gallery_items` table and its `projects` foreign-key relationship, configures the `project-images` storage bucket and RLS policies, and reloads the PostgREST schema cache. Existing projects remain valid with a null extended description and no gallery rows.
 
 The public site reads published projects with the Supabase anonymous/publishable key. Admin writes use the signed-in user's session and are protected by server-side authorization checks plus Row Level Security. No service-role key is required by this architecture.
 

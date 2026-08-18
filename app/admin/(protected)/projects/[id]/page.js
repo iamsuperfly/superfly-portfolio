@@ -8,11 +8,15 @@ export default async function EditProjectPage({ params, searchParams }) {
   const { id } = await params;
   const query = await searchParams;
   const { supabase } = await requireAdmin();
-  const { data: project } = await supabase
+  const { data: project, error } = await supabase
     .from('projects')
     .select('*, gallery:project_gallery_items(*)')
     .eq('id', id)
     .maybeSingle();
+
+  if (error) {
+    throw new Error(`Could not load project: ${error.message}`);
+  }
 
   if (!project) {
     notFound();
