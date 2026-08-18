@@ -197,6 +197,10 @@ a {
   max-width: 48ch;
 }
 
+.project-track-hint {
+  display: none;
+}
+
 .view-more-link,
 .back-link {
   color: var(--accent);
@@ -667,6 +671,57 @@ a {
   white-space: pre-line;
 }
 
+.project-gallery {
+  margin-top: 2rem;
+}
+
+.project-gallery-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-gallery-heading h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.project-gallery-heading span {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.project-gallery-track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.project-gallery-item {
+  min-width: 0;
+  margin: 0;
+}
+
+.project-gallery-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.project-gallery-item figcaption {
+  margin-top: 0.45rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
 .project-detail-copy .project-tags {
   margin-top: 1.4rem;
 }
@@ -746,6 +801,31 @@ a {
   align-items: center;
   flex-wrap: wrap;
   gap: 0.6rem;
+}
+
+.delete-confirmation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  border: 1px solid rgba(255, 120, 120, 0.35);
+  border-radius: 0.65rem;
+  padding: 0.65rem 0.75rem;
+  background: rgba(170, 40, 40, 0.12);
+}
+
+.delete-confirmation strong {
+  font-size: 0.8rem;
+}
+
+.delete-confirmation p {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.delete-confirmation form {
+  margin: 0;
 }
 
 .admin-nav-link {
@@ -875,6 +955,93 @@ a {
   grid-column: 1 / -1;
 }
 
+.admin-gallery-fieldset {
+  display: grid;
+  gap: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: 0.9rem;
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.admin-field-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-field-heading > div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.admin-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.admin-gallery-slot {
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  padding: 0.65rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.admin-gallery-slot-number {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.admin-gallery-preview {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.admin-gallery-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-gallery-slot label,
+.admin-gallery-upload {
+  font-size: 0.76rem;
+}
+
+.admin-gallery-slot input[type="text"],
+.admin-gallery-slot input:not([type]) {
+  padding: 0.55rem 0.6rem;
+  font-size: 0.78rem;
+}
+
+.admin-gallery-upload input[type="file"] {
+  padding: 0.45rem;
+  font-size: 0.72rem;
+}
+
+.gallery-delete-button {
+  justify-self: start;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.75rem;
+}
+
+.gallery-delete-confirmation {
+  display: grid;
+  align-items: start;
+  padding: 0.55rem;
+}
+
 .admin-checkbox {
   display: flex !important;
   grid-template-columns: auto 1fr;
@@ -960,6 +1127,15 @@ a {
     gap: 0.65rem;
   }
 
+  .project-track-hint {
+    display: block;
+    margin: -0.55rem 0 0.65rem;
+    color: var(--muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
   .project-track {
     display: flex;
     gap: 0.8rem;
@@ -1033,6 +1209,27 @@ a {
     padding-top: 0;
   }
 
+  .project-gallery-track {
+    display: flex;
+    gap: 0.7rem;
+    margin-right: -4vw;
+    padding-right: 4vw;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    touch-action: pan-x;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .project-gallery-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .project-gallery-item {
+    flex: 0 0 min(76vw, 17rem);
+    scroll-snap-align: start;
+  }
+
   .admin-content {
     padding-top: 2rem;
   }
@@ -1045,6 +1242,19 @@ a {
   .admin-form-grid {
     grid-template-columns: 1fr;
     padding: 1rem;
+  }
+
+  .admin-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .delete-confirmation {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .delete-confirmation .admin-row-actions {
+    justify-content: flex-end;
   }
 
   .admin-form-full {

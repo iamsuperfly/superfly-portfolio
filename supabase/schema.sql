@@ -26,6 +26,57 @@ create table if not exists public.projects (
 alter table public.projects
 add column if not exists extended_description text;
 
+create table if not exists public.project_gallery_items (
+  id uuid primary key default gen_random_uuid(),
+  project_id uuid not null references public.projects(id) on delete cascade,
+  image_url text not null,
+  image_path text not null,
+  label text not null,
+  display_order smallint not null default 0 check (display_order between 0 and 2),
+  created_at timestamptz not null default timezone('utc', now()),
+  unique (project_id, display_order)
+);
+
+alter table public.project_gallery_items enable row level security;
+
+drop policy if exists "Public can read gallery images" on public.project_gallery_items;
+create policy "Public can read gallery images"
+on public.project_gallery_items for select
+to anon, authenticated
+using (
+  exists (
+    select 1
+    from public.projects
+    where projects.id = project_gallery_items.project_id
+      and projects.published = true
+  )
+);
+
+drop policy if exists "Admins can read all gallery images" on public.project_gallery_items;
+create policy "Admins can read all gallery images"
+on public.project_gallery_items for select
+to authenticated
+using (public.is_admin());
+
+drop policy if exists "Admins can create gallery images" on public.project_gallery_items;
+create policy "Admins can create gallery images"
+on public.project_gallery_items for insert
+to authenticated
+with check (public.is_admin());
+
+drop policy if exists "Admins can update gallery images" on public.project_gallery_items;
+create policy "Admins can update gallery images"
+on public.project_gallery_items for update
+to authenticated
+using (public.is_admin())
+with check (public.is_admin());
+
+drop policy if exists "Admins can delete gallery images" on public.project_gallery_items;
+create policy "Admins can delete gallery images"
+on public.project_gallery_items for delete
+to authenticated
+using (public.is_admin());
+
 create or replace function public.set_updated_at()
 returns trigger
 language plpgsql

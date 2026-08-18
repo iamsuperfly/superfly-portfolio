@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { deleteProject } from '../actions';
+import DeleteProjectButton from '../../../components/admin/DeleteProjectButton';
 import { requireAdmin } from '../../../lib/auth';
 
 export const dynamic = 'force-dynamic';
@@ -45,10 +45,7 @@ export default async function AdminDashboardPage({ searchParams }) {
               </div>
               <div className="admin-row-actions">
                 <Link className="button button-ghost" href={`/admin/projects/${project.id}`}>Edit</Link>
-                <form action={deleteProject}>
-                  <input type="hidden" name="id" value={project.id} />
-                  <button className="button button-danger" type="submit">Delete</button>
-                </form>
+                <DeleteProjectButton projectId={project.id} projectTitle={project.title} />
               </div>
             </article>
           ))}

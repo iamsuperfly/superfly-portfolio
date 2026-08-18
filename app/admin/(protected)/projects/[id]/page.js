@@ -8,7 +8,11 @@ export default async function EditProjectPage({ params, searchParams }) {
   const { id } = await params;
   const query = await searchParams;
   const { supabase } = await requireAdmin();
-  const { data: project } = await supabase.from('projects').select('*').eq('id', id).maybeSingle();
+  const { data: project } = await supabase
+    .from('projects')
+    .select('*, gallery:project_gallery_items(*)')
+    .eq('id', id)
+    .maybeSingle();
 
   if (!project) {
     notFound();
