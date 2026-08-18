@@ -24,22 +24,15 @@ export default function ProjectTrack({ children }) {
       return undefined;
     }
 
-    const firstSlideClone = slides[0].cloneNode(true);
-    firstSlideClone.classList.add('project-track-clone');
-    firstSlideClone.setAttribute('aria-hidden', 'true');
-    firstSlideClone.setAttribute('inert', '');
-    firstSlideClone.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach((element) => {
-      element.setAttribute('tabindex', '-1');
-    });
-    track.appendChild(firstSlideClone);
-
-    const slideCount = slides.length;
+    let firstSlideClone = null;
+    let slideCount = slides.length;
     let currentIndex = 0;
     let autoplayTimer;
     let resumeTimer;
     let settleTimer;
     let isPaused = false;
     let isInteracting = false;
+    let isMobileCarouselEnabled = false;
 
     const stopAutoplay = () => {
       window.clearInterval(autoplayTimer);
@@ -83,12 +76,16 @@ export default function ProjectTrack({ children }) {
     };
 
     const scheduleSettle = () => {
+      if (!isMobileCarouselEnabled) {
+        return;
+      }
+
       window.clearTimeout(settleTimer);
       settleTimer = window.setTimeout(syncToNearestSlide, SETTLE_DELAY);
     };
 
     const advance = () => {
-      if (isPaused || isInteracting || !mobileQuery.matches || reduceMotionQuery.matches) {
+      if (isPaused || isInteracting || !isMobileCarouselEnabled || reduceMotionQuery.matches) {
         return;
       }
 
@@ -102,7 +99,7 @@ export default function ProjectTrack({ children }) {
 
     const startAutoplay = () => {
       stopAutoplay();
-      if (!isPaused && mobileQuery.matches && !reduceMotionQuery.matches) {
+      if (!isPaused && isMobileCarouselEnabled && !reduceMotionQuery.matches) {
         autoplayTimer = window.setInterval(advance, AUTOPLAY_DELAY);
       }
     };
@@ -141,9 +138,33 @@ export default function ProjectTrack({ children }) {
     };
 
     const handleModeChange = () => {
-      if (!mobileQuery.matches || reduceMotionQuery.matches) {
+      if (!mobileQuery.matches) {
+        isMobileCarouselEnabled = false;
         stopAutoplay();
+        window.clearTimeout(resumeTimer);
+        window.clearTimeout(settleTimer);
+        isInteracting = false;
+        currentIndex = 0;
+        slideCount = slides.length;
+        if (firstSlideClone) {
+          firstSlideClone.remove();
+          firstSlideClone = null;
+        }
+        track.scrollLeft = 0;
         return;
+      }
+
+      if (!isMobileCarouselEnabled) {
+        isMobileCarouselEnabled = true;
+        slideCount = slides.length;
+        firstSlideClone = slides[0].cloneNode(true);
+        firstSlideClone.classList.add('project-track-clone');
+        firstSlideClone.setAttribute('aria-hidden', 'true');
+        firstSlideClone.setAttribute('inert', '');
+        firstSlideClone.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach((element) => {
+          element.setAttribute('tabindex', '-1');
+        });
+        track.appendChild(firstSlideClone);
       }
 
       startAutoplay();
@@ -189,7 +210,9 @@ export default function ProjectTrack({ children }) {
         mobileQuery.removeListener(handleModeChange);
         reduceMotionQuery.removeListener(handleModeChange);
       }
-      firstSlideClone.remove();
+      if (firstSlideClone) {
+        firstSlideClone.remove();
+      }
     };
   }, []);
 
