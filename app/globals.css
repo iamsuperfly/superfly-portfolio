@@ -970,7 +970,7 @@ a {
     scroll-snap-type: x mandatory;
     scroll-snap-stop: always;
     scrollbar-width: none;
-    touch-action: pan-x;
+    touch-action: pan-x pan-y;
     -webkit-overflow-scrolling: touch;
   }
 
