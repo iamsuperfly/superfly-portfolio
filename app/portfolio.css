@@ -1,0 +1,119 @@
+/* Presentation overlay. Does not change CMS or routing. */
+
+body {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.navbar-hamburger,
+.channel-link,
+.project-link,
+.button {
+  min-height: 44px;
+}
+
+.navbar-hamburger {
+  min-width: 44px;
+}
+
+.navbar-brand {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+}
+
+.brand-wordmark {
+  margin: 0 0 1.1rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero-portrait-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.brand-image-wrap {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 0.4rem;
+}
+
+.hero-title {
+  font-size: clamp(1.85rem, 5vw, 3.2rem);
+  max-width: 18ch;
+  letter-spacing: -0.03em;
+}
+
+.channel-link {
+  width: auto;
+  height: auto;
+  min-width: 44px;
+  gap: 0.45rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.4rem;
+}
+
+.channel-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.project-links {
+  flex-wrap: wrap;
+}
+
+.project-link {
+  min-height: 44px;
+  padding: 0.45rem 0.8rem;
+}
+
+.button {
+  border-radius: 0.4rem;
+}
+
+.button:hover {
+  transform: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    opacity: 0.92;
+  }
+}
+
+@media (max-width: 540px) {
+  .navbar-mobile-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .projects-page-heading,
+  .projects-section-heading,
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
