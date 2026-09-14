@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Navbar from '../../../components/Navbar';
 import ProjectGallery from '../../../components/ProjectGallery';
+import { caseNote } from '../../../lib/caseNotes';
 import { getProjectBySlug, projectImageSource } from '../../../lib/projects';
 
 export const dynamic = 'force-dynamic';
@@ -9,9 +10,10 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
+  const note = caseNote(slug);
 
   return project
-    ? { title: `${project.title} — Superfly Portfolio`, description: project.description }
+    ? { title: `${project.title} — Superfly Portfolio`, description: note?.summary || project.description }
     : { title: 'Project — Superfly Portfolio' };
 }
 
@@ -25,13 +27,14 @@ export default async function ProjectDetailsPage({ params }) {
 
   const imageSource = projectImageSource(project);
   const technologies = project.technologies || [];
+  const note = caseNote(project.slug);
 
   return (
     <>
       <Navbar />
       <main className="site-shell">
         <section className="section reveal is-visible project-detail">
-          <Link className="back-link" href="/projects">← All projects</Link>
+          <Link className="back-link" href="/projects">All projects</Link>
           <div className="project-detail-grid">
             <div className="project-detail-preview">
               {imageSource ? (
@@ -42,12 +45,12 @@ export default async function ProjectDetailsPage({ params }) {
               )}
             </div>
             <div className="project-detail-copy">
-              <p className="project-label">{project.label || technologies[0] || 'Project'}</p>
+              <p className="project-label">{note?.label || project.label || technologies[0] || 'Project'}</p>
               <h1 className="page-title">{project.title}</h1>
-              <p className="project-detail-description">{project.description}</p>
+              <p className="project-detail-description">{note?.detail || project.description}</p>
               {project.extended_description ? (
                 <div className="project-detail-extended">
-                  <h2>About this project</h2>
+                  <h2>From the project record</h2>
                   <p>{project.extended_description}</p>
                 </div>
               ) : null}
@@ -62,12 +65,12 @@ export default async function ProjectDetailsPage({ params }) {
               <div className="project-detail-actions">
                 {project.project_url && (
                   <a className="button button-primary" href={project.project_url} target="_blank" rel="noreferrer">
-                    Visit project
+                    Open live site
                   </a>
                 )}
                 {project.github_url && (
                   <a className="button button-ghost" href={project.github_url} target="_blank" rel="noreferrer">
-                    View on GitHub
+                    GitHub
                   </a>
                 )}
               </div>

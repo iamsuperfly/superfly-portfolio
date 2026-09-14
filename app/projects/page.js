@@ -15,11 +15,14 @@ export default async function ProjectsPage() {
         <section className="section reveal is-visible">
           <div className="projects-page-heading">
             <div>
-              <p className="section-label">Portfolio</p>
-              <h1 className="page-title">All Projects</h1>
-              <p className="page-intro">A growing collection of products, experiments, and useful digital work.</p>
+              <p className="section-label">Published work</p>
+              <h1 className="page-title">Projects</h1>
+              <p className="page-intro">
+                Public builds you can open: RepSolana on Solana, Emma Gentle for a hardware counter,
+                and anything else published from /admin.
+              </p>
             </div>
-            <Link className="button button-ghost" href="/#projects">Back to highlights</Link>
+            <Link className="button button-ghost" href="/#projects">Back to home</Link>
           </div>
           {projects.length > 0 ? (
             <div className="projects-grid projects-catalogue-grid">

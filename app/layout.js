@@ -1,9 +1,10 @@
 import './globals.css';
+import './portfolio.css';
 
 const siteUrl = 'https://iamsuperflly.vercel.app/';
 const title = 'Superfly — Builder Portfolio';
 const description =
-  'Superfly is an independent builder creating useful digital products, websites, and tools. Explore builds and collaborate.';
+  'Superfly builds and ships public software: catalogues, on-chain tools, and experiments you can open.';
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -22,7 +23,7 @@ export const metadata = {
         url: '/images/branding/IMG_20251226_201906_741.jpg',
         width: 1200,
         height: 630,
-        alt: 'Superfly portfolio preview',
+        alt: 'Portrait of Superfly',
       },
     ],
     locale: 'en_US',
@@ -32,7 +33,7 @@ export const metadata = {
     card: 'summary_large_image',
     title,
     description,
-    creator: '@iamsuperflyy',
+    creator: '@iamsuperflly',
     images: ['/images/branding/IMG_20251226_201906_741.jpg'],
   },
 };

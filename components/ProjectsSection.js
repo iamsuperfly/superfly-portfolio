@@ -10,28 +10,28 @@ export default async function ProjectsSection() {
   const projects = await getProjects({ highlightedOnly: true, limit: 4 });
 
   return (
-    <SectionWrapper id="projects" title="Project Highlights">
+    <SectionWrapper id="projects" title="Builds">
       <div className="projects-section-heading">
-        <p>Selected builds, experiments, and products worth a closer look.</p>
-        <Link className="view-more-link" href="/projects">View More</Link>
+        <p>RepSolana and Emma Gentle first. Other published work follows from the CMS.</p>
+        <Link className="view-more-link" href="/projects">All projects</Link>
       </div>
       {projects.length > 0 ? (
         <>
-          <p className="project-track-hint" aria-hidden="true">Swipe to explore</p>
+          <p className="project-track-hint" aria-hidden="true">Swipe for more</p>
           <ProjectTrack>
             {projects.map((project) => <ProjectCard key={project.id} project={project} />)}
             <Link className="project-more-card" href="/projects">
-              <span className="project-label">Project Highlights</span>
-              <span className="project-more-title">View More</span>
-              <span className="project-more-copy">Explore the full collection of builds, experiments, and products.</span>
+              <span className="project-label">Archive</span>
+              <span className="project-more-title">All projects</span>
+              <span className="project-more-copy">Open the full published list, including GitHub and live links.</span>
               <span className="project-more-arrow" aria-hidden="true">↗</span>
             </Link>
           </ProjectTrack>
         </>
       ) : (
         <div className="empty-state">
-          <p className="project-label">Project Highlights</p>
-          <p className="empty-state-subtext">New work will appear here as projects are published.</p>
+          <p className="project-label">Builds</p>
+          <p className="empty-state-subtext">Published projects from the CMS will appear here.</p>
         </div>
       )}
     </SectionWrapper>
